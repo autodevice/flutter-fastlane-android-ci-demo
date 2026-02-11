@@ -1,15 +1,27 @@
-# flutter-fastlane-android-ci-demo
+# Flutter Fastlane Android CI Demo
 
-Flutter Android CI demo using Fastlane for automating Flutter Android builds
+A Flutter Android app that builds a debug APK using Fastlane via GitHub Actions and uploads it to AutoDevice.
 
-## Overview
+## Build
 
-This repository is a demo project for [AutoDevice](https://autodevice.dev) CI integration.
+```bash
+flutter pub get
+cd android
+bundle install
+bundle exec fastlane android build
+```
 
-## Getting Started
+The output APK is at `build/app/outputs/flutter-apk/app-debug.apk`.
 
-Coming soon.
+## CI/CD
 
-## License
+The GitHub Actions workflow (`.github/workflows/build.yml`) runs on every push to `main`:
 
-MIT
+1. Sets up Flutter 3.27.4
+2. Sets up Ruby 3.3 and installs Fastlane
+3. Builds a debug APK with `bundle exec fastlane android build`
+4. Uploads the APK to AutoDevice
+
+## Required Secrets
+
+- `AUTODEVICE_API_KEY` — AutoDevice API key for uploading builds
