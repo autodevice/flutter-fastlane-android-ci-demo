@@ -5,7 +5,7 @@ platform :android do
   lane :build do
     gradle(
       task: "assembleDebug",
-      project_dir: ".."
+      project_dir: "."
     )
   end
 end
